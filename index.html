@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popup</title>
+    <style>
+      body {
+        height: 3000px;
+      }
+      .fixed-btn {
+        background: #4cc7f4;
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        left: 40px;
+        max-width: 300px;
+        min-width: 150px;
+        padding: 1.5625em 0;
+        position: fixed;
+        top: 30px;
+        text-align: center;
+        text-decoration: none;
+      }
+      .modal-window {
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.55s ease;
+        visibility: hidden;
+        overflow: hidden;
+      }
+
+      .modal-window._active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-window__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-window__window {
+        background-color: #4cc7f4;
+        min-width: 150px;
+        position: relative;
+        padding: 15px 0;
+        border-radius: 5px;
+      }
+      .modal-window__btn-close {
+      }
+      .modal-window__btn-close {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 475px) {
+        .modal-window__btn-close {
+          top: 10px;
+          right: 10px;
+        }
+      }
+
+      .modal-window__btn-close::before,
+      .modal-window__btn-close::after {
+        content: "";
+        position: absolute;
+        height: 8%;
+        width: 100%;
+        background: #fff;
+      }
+
+      .modal-window__btn-close::before {
+        top: 50%;
+        -webkit-transform: rotate(45deg) translate(0px, -50%);
+        transform: rotate(45deg) translate(0px, -50%);
+      }
+
+      .modal-window__btn-close::after {
+        bottom: 50%;
+        -webkit-transform: rotate(-45deg) translate(0px, 50%);
+        transform: rotate(-45deg) translate(0px, 50%);
+      }
+      .modal-window__content {
+        text-align: center;
+      }
+      .modal__text {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#" id="fixed-btn" class="fixed-btn">Выбрать Дилера</a>
+    <div class="modal-window">
+      <div class="modal-window__wrapper">
+        <div class="modal-window__window">
+          <div id="modal-window__btn-close" class="modal-window__btn-close">
+            <span class="close-icon"></span>
+          </div>
+          <div class="modal-window__content">
+            <p class="modal__text">ваш выбор записан</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var fixedBtn = document.getElementById("fixed-btn");
+      if (fixedBtn) {
+        fixedBtn.addEventListener("click", function () {
+          var modalWindows = document.querySelectorAll(".modal-window");
+          for (let index = 0; index < modalWindows.length; index++) {
+            const modalWindow = modalWindows[index];
+            modalWindow.classList.add("_active");
+          }
+        });
+      }
+
+      var closeBtn = document.getElementById("modal-window__btn-close");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+          var modalWindows = document.querySelectorAll(".modal-window");
+          for (let index = 0; index < modalWindows.length; index++) {
+            const modalWindow = modalWindows[index];
+            modalWindow.classList.remove("_active");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
