@@ -9,6 +9,10 @@
       body {
         height: 3000px;
       }
+      ._block {
+        overflow: hidden;
+      }
+
       .fixed-btn {
         background: #4cc7f4;
         border-radius: 8px;
@@ -35,7 +39,6 @@
         opacity: 0;
         transition: all 0.55s ease;
         visibility: hidden;
-        overflow: hidden;
       }
 
       .modal-window._active {
@@ -122,6 +125,7 @@
           for (let index = 0; index < modalWindows.length; index++) {
             const modalWindow = modalWindows[index];
             modalWindow.classList.add("_active");
+            document.body.classList.add("_block");
           }
         });
       }
@@ -133,6 +137,7 @@
           for (let index = 0; index < modalWindows.length; index++) {
             const modalWindow = modalWindows[index];
             modalWindow.classList.remove("_active");
+            document.body.classList.remove("_block");
           }
         });
       }
